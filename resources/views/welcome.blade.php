@@ -579,8 +579,11 @@
                             '{{ asset('images/baguio/1.jpg') }}',
                             '{{ asset('images/baguio/2.jpg') }}',
                             '{{ asset('images/baguio/3.jpg') }}',
-                            '{{ asset('images/baguio/4.jpg') }}',
                             '{{ asset('images/baguio/5.jpg') }}',
+                            '{{ asset('images/baguio/6.jpg') }}',
+                            '{{ asset('images/baguio/7.jpg') }}',
+                            '{{ asset('images/baguio/8.jpg') }}',
+                            '{{ asset('images/baguio/9.jpg') }}',
                         ],
                         touchStartX: 0,
                         next() {
