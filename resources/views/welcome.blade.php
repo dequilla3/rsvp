@@ -5,24 +5,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Our Wedding</title>
-    <meta name="description" content="Join Kim and Mitchell as they celebrate their wedding day on October 16, 2026.">
+    <!-- Primary Meta Tags -->
+    <title>Kim & Mitchell | Our Wedding</title>
+
+    <meta name="title" content="Kim & Mitchell | Our Wedding">
+    <meta name="description"
+        content="Join Kim and Mitchell as they celebrate their wedding day on October 16, 2026. After 8 beautiful years, forever starts here.">
+    <meta name="author" content="Kim & Mitchell">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ url('/') }}">
+
+    <!-- Open Graph / Facebook / Messenger -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url('/') }}">
     <meta property="og:title" content="Kim & Mitchell | Our Wedding">
     <meta property="og:description"
-        content="Join Kim and Mitchell as they celebrate their wedding day on October 16, 2026.">
-    <meta property="og:image" content="{{ asset('images/wedding-hero.jpg') }}">
-    <meta property="og:image:alt" content="Kim and Mitchell's wedding">
+        content="Join Kim and Mitchell as they celebrate their wedding day on October 16, 2026. After 8 beautiful years, forever starts here.">
+    <meta property="og:image" content="{{ url(asset('images/wedding-hero.jpg')) }}">
+    <meta property="og:image:secure_url" content="{{ url(asset('images/wedding-hero.jpg')) }}">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Kim and Mitchell's Wedding">
+    <meta property="og:site_name" content="Kim & Mitchell Wedding">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ url('/') }}">
     <meta name="twitter:title" content="Kim & Mitchell | Our Wedding">
     <meta name="twitter:description"
-        content="Join Kim and Mitchell as they celebrate their wedding day on October 16, 2026.">
-    <meta name="twitter:image" content="{{ asset('images/wedding-hero.jpg') }}">
+        content="Join Kim and Mitchell as they celebrate their wedding day on October 16, 2026. After 8 beautiful years, forever starts here.">
+    <meta name="twitter:image" content="{{ url(asset('images/wedding-hero.jpg')) }}">
+    <meta name="twitter:image:alt" content="Kim and Mitchell's Wedding">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('images/wedding-rings.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/wedding-rings.png') }}">
+
+    <!-- Additional -->
+    <meta name="theme-color" content="#8f7259">
+
+
     <link rel="icon" type="image/png" href="{{ asset('images/wedding-rings.png') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
