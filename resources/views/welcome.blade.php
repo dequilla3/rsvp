@@ -686,14 +686,14 @@
                     current: 0,
                 
                     photos: [
-                        '{{ asset('images/our-story/1.jpg') }}',
-                        '{{ asset('images/our-story/2.jpg') }}',
-                        '{{ asset('images/our-story/3.jpg') }}',
-                        '{{ asset('images/our-story/4.jpg') }}',
-                        '{{ asset('images/our-story/5.jpg') }}',
-                        '{{ asset('images/our-story/6.jpg') }}',
-                        '{{ asset('images/our-story/7.jpg') }}',
-                        '{{ asset('images/our-story/8.jpg') }}',
+                        '{{ asset('images/story/1.jpg') }}',
+                        '{{ asset('images/story/2.jpg') }}',
+                        '{{ asset('images/story/3.jpg') }}',
+                        '{{ asset('images/story/4.jpg') }}',
+                        '{{ asset('images/story/5.jpg') }}',
+                        '{{ asset('images/story/6.jpg') }}',
+                        '{{ asset('images/story/7.jpg') }}',
+                        '{{ asset('images/story/8.jpg') }}',
                     ],
                 
                     touchStartX: 0,
