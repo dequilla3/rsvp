@@ -10,12 +10,14 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url('/') }}">
     <meta property="og:title" content="Kim & Mitchell | Our Wedding">
-    <meta property="og:description" content="Join Kim and Mitchell as they celebrate their wedding day on October 16, 2026.">
+    <meta property="og:description"
+        content="Join Kim and Mitchell as they celebrate their wedding day on October 16, 2026.">
     <meta property="og:image" content="{{ asset('images/wedding-hero.jpg') }}">
     <meta property="og:image:alt" content="Kim and Mitchell's wedding">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Kim & Mitchell | Our Wedding">
-    <meta name="twitter:description" content="Join Kim and Mitchell as they celebrate their wedding day on October 16, 2026.">
+    <meta name="twitter:description"
+        content="Join Kim and Mitchell as they celebrate their wedding day on October 16, 2026.">
     <meta name="twitter:image" content="{{ asset('images/wedding-hero.jpg') }}">
     <link rel="icon" type="image/png" href="{{ asset('images/wedding-rings.png') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
