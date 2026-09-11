@@ -21,8 +21,8 @@
     <meta property="og:title" content="Kim & Mitchell | Our Wedding">
     <meta property="og:description"
         content="Join Kim and Mitchell as they celebrate their wedding day on October 16, 2026. After 8 beautiful years, forever starts here.">
-    <meta property="og:image" content="{{ url(asset('images/invitation-1.jpg')) }}">
-    <meta property="og:image:secure_url" content="{{ url(asset('images/invitation-1.jpg')) }}">
+    <meta property="og:image" content="{{ url(versioned_asset('images/invitation-1.jpg')) }}">
+    <meta property="og:image:secure_url" content="{{ url(versioned_asset('images/invitation-1.jpg')) }}">
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -36,18 +36,18 @@
     <meta name="twitter:title" content="Kim & Mitchell | Our Wedding">
     <meta name="twitter:description"
         content="Join Kim and Mitchell as they celebrate their wedding day on October 16, 2026. After 8 beautiful years, forever starts here.">
-    <meta name="twitter:image" content="{{ url(asset('images/invitation-1.jpg')) }}">
+    <meta name="twitter:image" content="{{ url(versioned_asset('images/invitation-1.jpg')) }}">
     <meta name="twitter:image:alt" content="Kim and Mitchell's Wedding">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ asset('images/wedding-rings.png') }}">
-    <link rel="apple-touch-icon" href="{{ asset('images/wedding-rings.png') }}">
+    <link rel="icon" type="image/png" href="{{ versioned_asset('images/wedding-rings.png') }}">
+    <link rel="apple-touch-icon" href="{{ versioned_asset('images/wedding-rings.png') }}">
 
     <!-- Additional -->
     <meta name="theme-color" content="#8f7259">
 
 
-    <link rel="icon" type="image/png" href="{{ asset('images/wedding-rings.png') }}">
+    <link rel="icon" type="image/png" href="{{ versioned_asset('images/wedding-rings.png') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -153,7 +153,7 @@
             background-image:
                 linear-gradient(rgba(45, 35, 27, .30),
                     rgba(45, 35, 27, .40)),
-                url('{{ asset('images/wedding-hero.jpg') }}');
+                url('{{ versioned_asset('images/wedding-hero.jpg') }}');
             background-size: cover;
             background-position: center;
         }
@@ -179,9 +179,9 @@
     isTransitioning: false,
 
     invitations: [
-        '{{ asset('images/invitation-1.jpg') }}',
-        '{{ asset('images/invitation-2.jpg') }}',
-        '{{ asset('images/invitation-3.jpg') }}'
+        '{{ versioned_asset('images/invitation-1.jpg') }}',
+        '{{ versioned_asset('images/invitation-2.jpg') }}',
+        '{{ versioned_asset('images/invitation-3.jpg') }}'
     ],
 
     init() {
@@ -221,7 +221,7 @@
     {{-- ========================================================= --}}
 
     <section class="relative h-screen min-h-[680px] bg-cover bg-center bg-no-repeat text-white"
-        style="background-image: url('{{ asset('images/wedding-hero.jpg') }}');">
+        style="background-image: url('{{ versioned_asset('images/wedding-hero.jpg') }}');">
         {{-- Soft Beige Overlay --}}
         {{-- <div class="absolute inset-0 bg-[#d9c2aa]/30"></div> --}}
         <div class="absolute inset-0 bg-[#8f7259]/70"></div>
@@ -354,7 +354,7 @@
                 <div class="group cursor-pointer overflow-hidden rounded-xl border border-[#ded1c4] bg-white p-2 shadow-sm transition duration-500 hover:-translate-y-2 hover:shadow-xl fade-up"
                     @click="selectedInvitation = 0; invitationOpen = true">
                     <div class="overflow-hidden rounded-lg bg-[#faf7f3]">
-                        <img src="{{ asset('images/invitation-1.jpg') }}" alt="Wedding Invitation 1"
+                        <img src="{{ versioned_asset('images/invitation-1.jpg') }}" alt="Wedding Invitation 1"
                             class="h-auto w-full object-contain transition duration-700 group-hover:scale-[1.02]"
                             loading="lazy">
                     </div>
@@ -364,7 +364,7 @@
                 <div class="group cursor-pointer overflow-hidden rounded-xl border border-[#ded1c4] bg-white p-2 shadow-sm transition duration-500 hover:-translate-y-2 hover:shadow-xl fade-up"
                     @click="selectedInvitation = 1; invitationOpen = true">
                     <div class="overflow-hidden rounded-lg bg-[#faf7f3]">
-                        <img src="{{ asset('images/invitation-2.jpg') }}" alt="Wedding Invitation 2"
+                        <img src="{{ versioned_asset('images/invitation-2.jpg') }}" alt="Wedding Invitation 2"
                             class="h-auto w-full object-contain transition duration-700 group-hover:scale-[1.02]"
                             loading="lazy">
                     </div>
@@ -374,7 +374,7 @@
                 <div class="group cursor-pointer overflow-hidden rounded-xl border border-[#ded1c4] bg-white p-2 shadow-sm transition duration-500 hover:-translate-y-2 hover:shadow-xl fade-up"
                     @click="selectedInvitation = 2; invitationOpen = true">
                     <div class="overflow-hidden rounded-lg bg-[#faf7f3]">
-                        <img src="{{ asset('images/invitation-3.jpg') }}" alt="Wedding Invitation 3"
+                        <img src="{{ versioned_asset('images/invitation-3.jpg') }}" alt="Wedding Invitation 3"
                             class="h-auto w-full object-contain transition duration-700 group-hover:scale-[1.02]"
                             loading="lazy">
                     </div>
@@ -419,12 +419,12 @@
                     x-data="{
                         current: 0,
                         photos: [
-                            '{{ asset('images/disney/1.jpg') }}',
-                            '{{ asset('images/disney/2.jpg') }}',
-                            '{{ asset('images/disney/3.jpg') }}',
-                            '{{ asset('images/disney/4.jpg') }}',
-                            '{{ asset('images/disney/5.jpg') }}',
-                            '{{ asset('images/disney/6.jpg') }}',
+                            '{{ versioned_asset('images/disney/1.jpg') }}',
+                            '{{ versioned_asset('images/disney/2.jpg') }}',
+                            '{{ versioned_asset('images/disney/3.jpg') }}',
+                            '{{ versioned_asset('images/disney/4.jpg') }}',
+                            '{{ versioned_asset('images/disney/5.jpg') }}',
+                            '{{ versioned_asset('images/disney/6.jpg') }}',
                         ],
                         touchStartX: 0,
                         next() {
@@ -498,11 +498,11 @@
                     x-data="{
                         current: 0,
                         photos: [
-                            '{{ asset('images/boracay/1.jpg') }}',
-                            '{{ asset('images/boracay/2.jpg') }}',
-                            '{{ asset('images/boracay/3.jpg') }}',
-                            '{{ asset('images/boracay/4.jpg') }}',
-                            '{{ asset('images/boracay/5.jpg') }}',
+                            '{{ versioned_asset('images/boracay/1.jpg') }}',
+                            '{{ versioned_asset('images/boracay/2.jpg') }}',
+                            '{{ versioned_asset('images/boracay/3.jpg') }}',
+                            '{{ versioned_asset('images/boracay/4.jpg') }}',
+                            '{{ versioned_asset('images/boracay/5.jpg') }}',
                         ],
                         touchStartX: 0,
                         next() {
@@ -576,14 +576,14 @@
                     x-data="{
                         current: 0,
                         photos: [
-                            '{{ asset('images/baguio/1.jpg') }}',
-                            '{{ asset('images/baguio/2.jpg') }}',
-                            '{{ asset('images/baguio/3.jpg') }}',
-                            '{{ asset('images/baguio/5.jpg') }}',
-                            '{{ asset('images/baguio/6.jpg') }}',
-                            '{{ asset('images/baguio/7.jpg') }}',
-                            '{{ asset('images/baguio/8.jpg') }}',
-                            '{{ asset('images/baguio/9.jpg') }}',
+                            '{{ versioned_asset('images/baguio/1.jpg') }}',
+                            '{{ versioned_asset('images/baguio/2.jpg') }}',
+                            '{{ versioned_asset('images/baguio/3.jpg') }}',
+                            '{{ versioned_asset('images/baguio/5.jpg') }}',
+                            '{{ versioned_asset('images/baguio/6.jpg') }}',
+                            '{{ versioned_asset('images/baguio/7.jpg') }}',
+                            '{{ versioned_asset('images/baguio/8.jpg') }}',
+                            '{{ versioned_asset('images/baguio/9.jpg') }}',
                         ],
                         touchStartX: 0,
                         next() {
@@ -728,14 +728,14 @@
                     current: 0,
                 
                     photos: [
-                        '{{ asset('images/story/1.jpg') }}',
-                        '{{ asset('images/story/2.jpg') }}',
-                        '{{ asset('images/story/3.jpg') }}',
-                        '{{ asset('images/story/4.jpg') }}',
-                        '{{ asset('images/story/5.jpg') }}',
-                        '{{ asset('images/story/6.jpg') }}',
-                        '{{ asset('images/story/7.jpg') }}',
-                        '{{ asset('images/story/8.jpg') }}',
+                        '{{ versioned_asset('images/story/1.jpg') }}',
+                        '{{ versioned_asset('images/story/2.jpg') }}',
+                        '{{ versioned_asset('images/story/3.jpg') }}',
+                        '{{ versioned_asset('images/story/4.jpg') }}',
+                        '{{ versioned_asset('images/story/5.jpg') }}',
+                        '{{ versioned_asset('images/story/6.jpg') }}',
+                        '{{ versioned_asset('images/story/7.jpg') }}',
+                        '{{ versioned_asset('images/story/8.jpg') }}',
                     ],
                 
                     touchStartX: 0,
