@@ -21,8 +21,8 @@
     <meta property="og:title" content="Kim & Mitchell | Our Wedding">
     <meta property="og:description"
         content="Join Kim and Mitchell as they celebrate their wedding day on October 16, 2026. After 8 beautiful years, forever starts here.">
-    <meta property="og:image" content="{{ url(asset('images/wedding-hero.jpg')) }}">
-    <meta property="og:image:secure_url" content="{{ url(asset('images/wedding-hero.jpg')) }}">
+    <meta property="og:image" content="{{ url(asset('images/invitation-1.jpg')) }}">
+    <meta property="og:image:secure_url" content="{{ url(asset('images/invitation-1.jpg')) }}">
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -36,7 +36,7 @@
     <meta name="twitter:title" content="Kim & Mitchell | Our Wedding">
     <meta name="twitter:description"
         content="Join Kim and Mitchell as they celebrate their wedding day on October 16, 2026. After 8 beautiful years, forever starts here.">
-    <meta name="twitter:image" content="{{ url(asset('images/wedding-hero.jpg')) }}">
+    <meta name="twitter:image" content="{{ url(asset('images/invitation-1.jpg')) }}">
     <meta name="twitter:image:alt" content="Kim and Mitchell's Wedding">
 
     <!-- Favicon -->
@@ -847,7 +847,7 @@
                 </h2>
 
                 <p class="mt-5 text-sm tracking-widest text-wedding-muted">
-                    DECEMBER 16, 2026
+                    OCTOBER 16, 2026
                 </p>
 
             </div>
