@@ -9,9 +9,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/guests', [GuestController::class, 'store'])
-    ->middleware('throttle:10,1')
-    ->name('guests.store');
+Route::post('/guests', [GuestController::class, 'store'])->name('guests.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard', [
