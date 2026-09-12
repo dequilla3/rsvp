@@ -193,7 +193,6 @@
     guestName: @js(old('name', '')),
     rsvpOpen: @js(session()->has('rsvp_success') || $errors->any()),
     submitted: @js(session()->has('rsvp_success')),
-    hasResponded: false,
     invitationOpen: false,
     selectedInvitation: 0,
     touchStartX: 0,
@@ -208,21 +207,6 @@
     ],
 
     init() {
-        try {
-            this.hasResponded = localStorage.getItem('wedding_rsvp_submitted') === 'true';
-
-            if (this.submitted) {
-                localStorage.setItem('wedding_rsvp_submitted', 'true');
-                this.hasResponded = true;
-            }
-
-            if (this.hasResponded && !this.submitted) {
-                this.rsvpOpen = false;
-            }
-        } catch (error) {
-            // Continue normally when browser storage is unavailable.
-        }
-
         const animatedSelector = '.fade-up, .fade-left, .fade-right, .scale-in';
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -1131,10 +1115,9 @@
                 this new chapter together.
             </p>
 
-            <button @click="if (!hasResponded) rsvpOpen = true" :disabled="hasResponded"
-                :class="hasResponded ? 'cursor-not-allowed bg-wedding-muted/50' : 'bg-wedding-dark hover:bg-wedding-brown'"
-                class="mt-10 px-10 py-4 text-xs uppercase tracking-[0.3em] text-white transition">
-                <span x-text="hasResponded ? 'RSVP Already Submitted' : 'Yes, I\'ll be there'"></span>
+            <button @click="rsvpOpen = true"
+                class="mt-10 bg-wedding-dark px-10 py-4 text-xs uppercase tracking-[0.3em] text-white transition hover:bg-wedding-brown">
+                Yes, I'll be there
             </button>
 
         </div>
