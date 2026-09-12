@@ -474,11 +474,22 @@
                             '{{ versioned_asset('images/disney/6.jpg') }}',
                         ],
                         touchStartX: 0,
+                        init() {
+                            this.preload(0);
+                            this.preload(1);
+                        },
+                        preload(index) {
+                            if (!this.photos[index]) return;
+                            const image = new Image();
+                            image.src = this.photos[index];
+                        },
                         next() {
                             this.current = (this.current + 1) % this.photos.length;
+                            this.preload((this.current + 1) % this.photos.length);
                         },
                         prev() {
                             this.current = (this.current - 1 + this.photos.length) % this.photos.length;
+                            this.preload((this.current - 1 + this.photos.length) % this.photos.length);
                         }
                     }" @touchstart="touchStartX = $event.changedTouches[0].screenX"
                     @touchend="
@@ -552,11 +563,22 @@
                             '{{ versioned_asset('images/boracay/5.jpg') }}',
                         ],
                         touchStartX: 0,
+                        init() {
+                            this.preload(0);
+                            this.preload(1);
+                        },
+                        preload(index) {
+                            if (!this.photos[index]) return;
+                            const image = new Image();
+                            image.src = this.photos[index];
+                        },
                         next() {
                             this.current = (this.current + 1) % this.photos.length;
+                            this.preload((this.current + 1) % this.photos.length);
                         },
                         prev() {
                             this.current = (this.current - 1 + this.photos.length) % this.photos.length;
+                            this.preload((this.current - 1 + this.photos.length) % this.photos.length);
                         }
                     }" @touchstart="touchStartX = $event.changedTouches[0].screenX"
                     @touchend="
@@ -633,11 +655,22 @@
                             '{{ versioned_asset('images/baguio/9.jpg') }}',
                         ],
                         touchStartX: 0,
+                        init() {
+                            this.preload(0);
+                            this.preload(1);
+                        },
+                        preload(index) {
+                            if (!this.photos[index]) return;
+                            const image = new Image();
+                            image.src = this.photos[index];
+                        },
                         next() {
                             this.current = (this.current + 1) % this.photos.length;
+                            this.preload((this.current + 1) % this.photos.length);
                         },
                         prev() {
                             this.current = (this.current - 1 + this.photos.length) % this.photos.length;
+                            this.preload((this.current - 1 + this.photos.length) % this.photos.length);
                         }
                     }" @touchstart="touchStartX = $event.changedTouches[0].screenX"
                     @touchend="
