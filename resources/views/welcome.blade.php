@@ -238,18 +238,18 @@
                 </p>
 
                 <h1 class="script text-7xl leading-none sm:text-8xl md:text-9xl">
-                    Our Wedding
+                    Kim <span class="text-[24pt]">&</span> Mitchell
                 </h1>
 
                 <div class="mx-auto my-8 h-px w-24 bg-white/70"></div>
 
                 <h2 class="serif text-4xl tracking-wide sm:text-5xl md:text-6xl">
-                    Kim & Mitchell
+                    October 16, 2026
                 </h2>
 
-                <p class="mt-6 text-sm uppercase tracking-[0.3em] sm:text-base">
+                {{-- <p class="mt-6 text-sm uppercase tracking-[0.3em] sm:text-base">
                     October 16, 2026
-                </p>
+                </p> --}}
 
                 <div x-data="{ playing: false }">
 
@@ -658,168 +658,206 @@
     </section>
 
     {{-- ========================================================= --}}
-    {{-- OUR STORY --}}
+    {{-- FREQUENTLY ASKED QUESTIONS --}}
     {{-- ========================================================= --}}
-    <section class="px-6 py-24 sm:py-32">
+    <section class="bg-wedding-beige px-6 py-24 sm:py-32">
 
-        <div class="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-2 md:gap-14 lg:gap-20">
+        <div class="mx-auto max-w-3xl">
 
-            {{-- STORY CONTENT --}}
-            <div class="fade-left">
-
-                <p class="script text-5xl text-wedding-brown">
-                    Our story
+            {{-- Header --}}
+            <div class="mb-16 text-center fade-up">
+                <p class="script text-4xl text-wedding-brown">
+                    A few notes
                 </p>
 
-                <h2 class="serif mt-4 text-4xl font-normal leading-tight text-wedding-dark sm:text-5xl">
-                    It all started with
-                    <span class="italic">
-                        a simple hello.
-                    </span>
+                <h2 class="serif mt-2 text-4xl font-light sm:text-5xl">
+                    Frequently Asked Questions
                 </h2>
 
-                <div class="my-7 h-px w-16 bg-wedding-sand"></div>
+                <div class="mx-auto my-7 h-px w-16 bg-wedding-sand"></div>
 
-                <p class="serif text-base leading-8 text-wedding-muted sm:text-lg">
-                    Mitchell was only 17 when he met Kim, and Kim was 18.
-                    It all started with a simple
-                    <span class="font-medium text-wedding-brown">
-                        “Hi, Mit”
-                    </span>
-                    and
-                    <span class="font-medium text-wedding-brown">
-                        “Hello, Kuya.”
-                    </span>
-                    Who would have thought those simple words would begin a
-                    love story that would last for eight beautiful years?
+                <p class="mx-auto max-w-xl text-sm leading-8 text-wedding-muted sm:text-base">
+                    A few gentle notes to help us keep our celebration intimate,
+                    meaningful, and beautifully planned. Thank you for understanding.
                 </p>
-
-                <p class="serif mt-5 text-base leading-8 text-wedding-muted sm:text-lg">
-                    From celebrating their first monthsary with only
-                    <span class="font-medium text-wedding-brown">
-                        ₱150 from Kim
-                    </span>,
-                    to getting engaged at
-                    <span class="font-medium text-wedding-brown">
-                        Hong Kong Disneyland
-                    </span>,
-                    their journey has been truly special.
-                </p>
-
-                <p class="serif mt-5 text-base leading-8 text-wedding-muted sm:text-lg">
-                    They started as two young dreamers with little but big dreams,
-                    faith, and love for each other. Through hard work, perseverance,
-                    and God's guidance, they finished their studies, found their paths,
-                    and built a life together.
-                </p>
-
-                <p class="serif mt-5 text-base leading-8 text-wedding-muted sm:text-lg">
-                    They grew from young lovers into responsible adults, learning
-                    that love means choosing each other through every challenge,
-                    sacrifice, and season of life.
-                </p>
-
             </div>
 
+            {{-- Questions --}}
+            <div class="space-y-5" x-data="{ open: null }">
 
-            {{-- PHOTO SET --}}
-            <div class="photo-placeholder relative aspect-[2/3] overflow-hidden fade-left group"
-                x-data="{
-                    current: 0,
-                
-                    photos: [
-                        '{{ versioned_asset('images/story/1.jpg') }}',
-                        '{{ versioned_asset('images/story/2.jpg') }}',
-                        '{{ versioned_asset('images/story/3.jpg') }}',
-                        '{{ versioned_asset('images/story/4.jpg') }}',
-                        '{{ versioned_asset('images/story/5.jpg') }}',
-                        '{{ versioned_asset('images/story/6.jpg') }}',
-                        '{{ versioned_asset('images/story/7.jpg') }}',
-                        '{{ versioned_asset('images/story/8.jpg') }}',
-                    ],
-                
-                    touchStartX: 0,
-                
-                    next() {
-                        this.current = (this.current + 1) % this.photos.length;
-                    },
-                
-                    prev() {
-                        this.current = (this.current - 1 + this.photos.length) % this.photos.length;
-                    }
-                }" @touchstart="touchStartX = $event.changedTouches[0].screenX"
-                @touchend="
-                const diff = $event.changedTouches[0].screenX - touchStartX;
-
-                if (Math.abs(diff) > 50) {
-                    diff > 0 ? prev() : next();
-                }
-            ">
-
-                {{-- Images --}}
-                <template x-for="(src, index) in photos" :key="index">
-
-                    <img x-show="current === index" x-transition:enter="transition ease-out duration-500"
-                        x-transition:enter-start="opacity-0 scale-105" x-transition:enter-end="opacity-100 scale-100"
-                        x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100"
-                        x-transition:leave-end="opacity-0" :src="src" alt="Kim and Mitchell"
-                        class="absolute inset-0 h-full w-full select-none object-cover" loading="lazy"
-                        draggable="false">
-
-                </template>
-
-
-                {{-- Fallback --}}
-                <div x-show="photos.length === 0" class="flex h-full items-center justify-center">
-                    <div class="text-center text-wedding-muted">
-
-                        <svg class="mx-auto mb-3 h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-width="1" d="M3 5h18v14H3z" />
-
-                            <circle cx="8.5" cy="10" r="1.5" />
-
-                            <path d="M21 15l-5-5L5 19" />
-                        </svg>
-
-                        <p class="text-xs uppercase tracking-widest">
-                            Your Photo
-                        </p>
-
+                {{-- 1 --}}
+                <div class="overflow-hidden rounded-lg border border-wedding-sand/70 bg-wedding-cream">
+                    <button type="button" @click="open = open === 1 ? null : 1"
+                        class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition hover:bg-wedding-beige/50">
+                        <h3 class="serif text-lg text-wedding-dark sm:text-xl">
+                            Can I bring a plus-one?
+                        </h3>
+                        <span
+                            class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-wedding-sand text-wedding-brown transition-transform duration-300"
+                            :class="open === 1 ? 'rotate-45' : ''">+</span>
+                    </button>
+                    <div x-show="open === 1" x-collapse>
+                        <div class="border-t border-wedding-sand/50 px-6 pb-6 pt-4">
+                            <p class="serif text-base leading-8 text-wedding-muted">
+                                Kindly celebrate with us only with the guest/s indicated on your invitation.
+                                Due to our limited seating, we are unable to accommodate additional guests.
+                                Thank you for understanding.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
-
-                {{-- Dots --}}
-                <div x-show="photos.length > 1" class="absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 gap-1.5">
-
-                    <template x-for="(src, index) in photos" :key="index">
-
-                        <button type="button" @click="current = index"
-                            class="h-1.5 rounded-full transition-all duration-300"
-                            :class="current === index ?
-                                'w-5 bg-white' :
-                                'w-1.5 bg-white/40'"
-                            :aria-label="'View photo ' + (index + 1)"></button>
-
-                    </template>
-
+                {{-- 2 --}}
+                <div class="overflow-hidden rounded-lg border border-wedding-sand/70 bg-wedding-cream">
+                    <button type="button" @click="open = open === 2 ? null : 2"
+                        class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition hover:bg-wedding-beige/50">
+                        <h3 class="serif text-lg text-wedding-dark sm:text-xl">
+                            Can I wear white or black?
+                        </h3>
+                        <span
+                            class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-wedding-sand text-wedding-brown transition-transform duration-300"
+                            :class="open === 2 ? 'rotate-45' : ''">+</span>
+                    </button>
+                    <div x-show="open === 2" x-collapse>
+                        <div class="border-t border-wedding-sand/50 px-6 pb-6 pt-4">
+                            <p class="serif text-base leading-8 text-wedding-muted">
+                                We kindly ask our guests to refrain from wearing white, as it is reserved
+                                for the Bride and Groom. Black is also not part of our chosen palette.
+                                We would love for you to follow our beige and champagne gold dress code.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
+                {{-- 3 --}}
+                <div class="overflow-hidden rounded-lg border border-wedding-sand/70 bg-wedding-cream">
+                    <button type="button" @click="open = open === 3 ? null : 3"
+                        class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition hover:bg-wedding-beige/50">
+                        <h3 class="serif text-lg text-wedding-dark sm:text-xl">
+                            Can I bring my kids?
+                        </h3>
+                        <span
+                            class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-wedding-sand text-wedding-brown transition-transform duration-300"
+                            :class="open === 3 ? 'rotate-45' : ''">+</span>
+                    </button>
+                    <div x-show="open === 3" x-collapse>
+                        <div class="border-t border-wedding-sand/50 px-6 pb-6 pt-4">
+                            <p class="serif text-base leading-8 text-wedding-muted">
+                                We adore your little ones, but due to limited seating, this will be an
+                                adults-only celebration. We hope you understand and thank you for
+                                celebrating with us.
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
-                {{-- Previous --}}
-                <button type="button" @click="prev()" x-show="photos.length > 1"
-                    class="absolute left-3 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-black/25 text-xl text-white opacity-0 backdrop-blur-sm transition duration-300 group-hover:opacity-100"
-                    aria-label="Previous photo">
-                    ‹
-                </button>
+                {{-- 4 --}}
+                <div class="overflow-hidden rounded-lg border border-wedding-sand/70 bg-wedding-cream">
+                    <button type="button" @click="open = open === 4 ? null : 4"
+                        class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition hover:bg-wedding-beige/50">
+                        <h3 class="serif text-lg text-wedding-dark sm:text-xl">
+                            Will transportation be provided?
+                        </h3>
+                        <span
+                            class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-wedding-sand text-wedding-brown transition-transform duration-300"
+                            :class="open === 4 ? 'rotate-45' : ''">+</span>
+                    </button>
+                    <div x-show="open === 4" x-collapse>
+                        <div class="border-t border-wedding-sand/50 px-6 pb-6 pt-4">
+                            <p class="serif text-base leading-8 text-wedding-muted">
+                                Transportation will be provided for the wedding entourage only.
+                                Guests are kindly requested to arrange their own transportation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
+                {{-- 5 --}}
+                <div class="overflow-hidden rounded-lg border border-wedding-sand/70 bg-wedding-cream">
+                    <button type="button" @click="open = open === 5 ? null : 5"
+                        class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition hover:bg-wedding-beige/50">
+                        <h3 class="serif text-lg text-wedding-dark sm:text-xl">
+                            Can I wear jeans or sleeveless outfits to church?
+                        </h3>
+                        <span
+                            class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-wedding-sand text-wedding-brown transition-transform duration-300"
+                            :class="open === 5 ? 'rotate-45' : ''">+</span>
+                    </button>
+                    <div x-show="open === 5" x-collapse>
+                        <div class="border-t border-wedding-sand/50 px-6 pb-6 pt-4">
+                            <p class="serif text-base leading-8 text-wedding-muted">
+                                We kindly ask everyone to dress appropriately for the church ceremony
+                                and follow our designated dress code. Thank you for helping us honor
+                                the occasion.
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
-                {{-- Next --}}
-                <button type="button" @click="next()" x-show="photos.length > 1"
-                    class="absolute right-3 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-black/25 text-xl text-white opacity-0 backdrop-blur-sm transition duration-300 group-hover:opacity-100"
-                    aria-label="Next photo">
-                    ›
-                </button>
+                {{-- 6 --}}
+                <div class="overflow-hidden rounded-lg border border-wedding-sand/70 bg-wedding-cream">
+                    <button type="button" @click="open = open === 6 ? null : 6"
+                        class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition hover:bg-wedding-beige/50">
+                        <h3 class="serif text-lg text-wedding-dark sm:text-xl">
+                            Can I choose my seat?
+                        </h3>
+                        <span
+                            class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-wedding-sand text-wedding-brown transition-transform duration-300"
+                            :class="open === 6 ? 'rotate-45' : ''">+</span>
+                    </button>
+                    <div x-show="open === 6" x-collapse>
+                        <div class="border-t border-wedding-sand/50 px-6 pb-6 pt-4">
+                            <p class="serif text-base leading-8 text-wedding-muted">
+                                Seats will be assigned in advance. Our team will be happy to guide you
+                                to your designated seat. Just relax and enjoy the celebration!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- 7 --}}
+                <div class="overflow-hidden rounded-lg border border-wedding-sand/70 bg-wedding-cream">
+                    <button type="button" @click="open = open === 7 ? null : 7"
+                        class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition hover:bg-wedding-beige/50">
+                        <h3 class="serif text-lg text-wedding-dark sm:text-xl">
+                            Can I help the Bride during the wedding?
+                        </h3>
+                        <span
+                            class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-wedding-sand text-wedding-brown transition-transform duration-300"
+                            :class="open === 7 ? 'rotate-45' : ''">+</span>
+                    </button>
+                    <div x-show="open === 7" x-collapse>
+                        <div class="border-t border-wedding-sand/50 px-6 pb-6 pt-4">
+                            <p class="serif text-base leading-8 text-wedding-muted">
+                                That is so sweet of you! But please don’t worry—we have someone
+                                specially assigned to assist the Bride. Your presence and celebration
+                                with us are more than enough.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- 8 --}}
+                <div class="overflow-hidden rounded-lg border border-wedding-sand/70 bg-wedding-cream">
+                    <button type="button" @click="open = open === 8 ? null : 8"
+                        class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition hover:bg-wedding-beige/50">
+                        <h3 class="serif text-lg text-wedding-dark sm:text-xl">
+                            Can I use my phone inside the church?
+                        </h3>
+                        <span
+                            class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-wedding-sand text-wedding-brown transition-transform duration-300"
+                            :class="open === 8 ? 'rotate-45' : ''">+</span>
+                    </button>
+                    <div x-show="open === 8" x-collapse>
+                        <div class="border-t border-wedding-sand/50 px-6 pb-6 pt-4">
+                            <p class="serif text-base leading-8 text-wedding-muted">
+                                We kindly ask everyone to keep their phones on silent mode or switched
+                                off during the ceremony, so we can all be fully present for this
+                                special moment.
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
             </div>
 
