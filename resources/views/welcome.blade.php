@@ -77,9 +77,12 @@
         }
 
         /* Prevent animated elements from creating overflow before they animate in */
+        .fade-up,
         .fade-left,
-        .fade-right {
+        .fade-right,
+        .scale-in {
             will-change: transform, opacity;
+            transition-delay: var(--reveal-delay, 0ms);
         }
 
         /* Optional but recommended – slightly smaller movement on mobile */
@@ -107,46 +110,65 @@
 
         .fade-up {
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.9s ease, transform 0.9s ease;
+            transform: translateY(32px) scale(.985);
+            transition: opacity 0.85s cubic-bezier(.22, 1, .36, 1),
+                transform 0.85s cubic-bezier(.22, 1, .36, 1);
         }
 
         .fade-up.show {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
         .fade-left {
             opacity: 0;
-            transform: translateX(-50px);
-            transition: opacity 0.9s ease, transform 0.9s ease;
+            transform: translateX(-42px) scale(.985);
+            transition: opacity 0.9s cubic-bezier(.22, 1, .36, 1),
+                transform 0.9s cubic-bezier(.22, 1, .36, 1);
         }
 
         .fade-left.show {
             opacity: 1;
-            transform: translateX(0);
+            transform: translateX(0) scale(1);
         }
 
         .fade-right {
             opacity: 0;
-            transform: translateX(50px);
-            transition: opacity 0.9s ease, transform 0.9s ease;
+            transform: translateX(42px) scale(.985);
+            transition: opacity 0.9s cubic-bezier(.22, 1, .36, 1),
+                transform 0.9s cubic-bezier(.22, 1, .36, 1);
         }
 
         .fade-right.show {
             opacity: 1;
-            transform: translateX(0);
+            transform: translateX(0) scale(1);
         }
 
         .scale-in {
             opacity: 0;
-            transform: scale(.92);
-            transition: opacity 1s ease, transform 1s ease;
+            transform: scale(.94);
+            transition: opacity 1s cubic-bezier(.22, 1, .36, 1),
+                transform 1s cubic-bezier(.22, 1, .36, 1);
         }
 
         .scale-in.show {
             opacity: 1;
             transform: scale(1);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            .fade-up,
+            .fade-left,
+            .fade-right,
+            .scale-in {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
         }
 
         .hero-image {
@@ -201,19 +223,28 @@
             // Continue normally when browser storage is unavailable.
         }
 
+        const animatedSelector = '.fade-up, .fade-left, .fade-right, .scale-in';
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
+                    const siblings = Array.from(entry.target.parentElement?.children || [])
+                        .filter(element => element.matches(animatedSelector));
+                    const siblingIndex = siblings.indexOf(entry.target);
+
+                    entry.target.style.setProperty(
+                        '--reveal-delay',
+                        `${Math.min(Math.max(siblingIndex, 0) * 90, 270)}ms`
+                    );
                     entry.target.classList.add('show');
+                } else {
+                    entry.target.classList.remove('show');
                 }
             });
         }, {
             threshold: 0.15
         });
 
-        document.querySelectorAll(
-            '.fade-up, .fade-left, .fade-right, .scale-in'
-        ).forEach(el => observer.observe(el));
+        document.querySelectorAll(animatedSelector).forEach(el => observer.observe(el));
     },
 
     changeInvitation(direction) {
@@ -701,7 +732,7 @@
             <div class="space-y-5" x-data="{ open: null }">
 
                 {{-- 1 --}}
-                <div class="overflow-hidden rounded-lg border border-wedding-sand/70 bg-wedding-cream">
+                <div class="overflow-hidden rounded-lg border border-wedding-sand/70 bg-wedding-cream fade-up">
                     <button type="button" @click="open = open === 1 ? null : 1"
                         class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition hover:bg-wedding-beige/50">
                         <h3 class="serif text-lg text-wedding-dark sm:text-xl">
@@ -728,7 +759,7 @@
                 </div>
 
                 {{-- 2 --}}
-                <div class="overflow-hidden rounded-lg border border-wedding-sand/70 bg-wedding-cream">
+                <div class="overflow-hidden rounded-lg border border-wedding-sand/70 bg-wedding-cream fade-up">
                     <button type="button" @click="open = open === 2 ? null : 2"
                         class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition hover:bg-wedding-beige/50">
                         <h3 class="serif text-lg text-wedding-dark sm:text-xl">
@@ -755,7 +786,7 @@
                 </div>
 
                 {{-- 3 --}}
-                <div class="overflow-hidden rounded-lg border border-wedding-sand/70 bg-wedding-cream">
+                <div class="overflow-hidden rounded-lg border border-wedding-sand/70 bg-wedding-cream fade-up">
                     <button type="button" @click="open = open === 3 ? null : 3"
                         class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition hover:bg-wedding-beige/50">
                         <h3 class="serif text-lg text-wedding-dark sm:text-xl">
@@ -782,7 +813,7 @@
                 </div>
 
                 {{-- 4 --}}
-                <div class="overflow-hidden rounded-lg border border-wedding-sand/70 bg-wedding-cream">
+                <div class="overflow-hidden rounded-lg border border-wedding-sand/70 bg-wedding-cream fade-up">
                     <button type="button" @click="open = open === 4 ? null : 4"
                         class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition hover:bg-wedding-beige/50">
                         <h3 class="serif text-lg text-wedding-dark sm:text-xl">
@@ -808,7 +839,7 @@
                 </div>
 
                 {{-- 5 --}}
-                <div class="overflow-hidden rounded-lg border border-wedding-sand/70 bg-wedding-cream">
+                <div class="overflow-hidden rounded-lg border border-wedding-sand/70 bg-wedding-cream fade-up">
                     <button type="button" @click="open = open === 5 ? null : 5"
                         class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition hover:bg-wedding-beige/50">
                         <h3 class="serif text-lg text-wedding-dark sm:text-xl">
@@ -835,7 +866,7 @@
                 </div>
 
                 {{-- 6 --}}
-                <div class="overflow-hidden rounded-lg border border-wedding-sand/70 bg-wedding-cream">
+                <div class="overflow-hidden rounded-lg border border-wedding-sand/70 bg-wedding-cream fade-up">
                     <button type="button" @click="open = open === 6 ? null : 6"
                         class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition hover:bg-wedding-beige/50">
                         <h3 class="serif text-lg text-wedding-dark sm:text-xl">
@@ -861,7 +892,7 @@
                 </div>
 
                 {{-- 7 --}}
-                <div class="overflow-hidden rounded-lg border border-wedding-sand/70 bg-wedding-cream">
+                <div class="overflow-hidden rounded-lg border border-wedding-sand/70 bg-wedding-cream fade-up">
                     <button type="button" @click="open = open === 7 ? null : 7"
                         class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition hover:bg-wedding-beige/50">
                         <h3 class="serif text-lg text-wedding-dark sm:text-xl">
@@ -888,7 +919,7 @@
                 </div>
 
                 {{-- 8 --}}
-                <div class="overflow-hidden rounded-lg border border-wedding-sand/70 bg-wedding-cream">
+                <div class="overflow-hidden rounded-lg border border-wedding-sand/70 bg-wedding-cream fade-up">
                     <button type="button" @click="open = open === 8 ? null : 8"
                         class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition hover:bg-wedding-beige/50">
                         <h3 class="serif text-lg text-wedding-dark sm:text-xl">
