@@ -233,7 +233,7 @@
 
             <div class="max-w-4xl">
 
-                <p class="mb-6 text-sm font-light uppercase tracking-[0.45em]" data-aos>
+                <p class="mb-12 text-sm font-light uppercase tracking-[0.45em]" data-aos>
                     After 8 beautiful years, forever starts here.
                 </p>
 
@@ -301,7 +301,7 @@
     {{-- INTRO --}}
     {{-- ========================================================= --}}
 
-    <section class="px-6 py-24 sm:py-32">
+    <section class="px-6 py-20 sm:py-28">
 
         <div class="mx-auto max-w-3xl text-center fade-up">
 
@@ -326,7 +326,7 @@
     </section>
 
     {{-- INVITATION SECTION --}}
-    <section id="invitation" class="relative overflow-hidden bg-[#f5eee6] px-6 py-20 sm:px-8 lg:px-12">
+    <section id="invitation" class="relative overflow-hidden bg-[#f5eee6] px-6 py-20 sm:px-8 sm:py-28 lg:px-12">
         <div class="mx-auto max-w-6xl">
 
             {{-- Section Header --}}
@@ -395,11 +395,11 @@
     {{-- PHOTO SECTION --}}
     {{-- ========================================================= --}}
 
-    <section class="bg-wedding-beige px-6 py-24 sm:py-32">
+    <section class="bg-wedding-beige px-6 py-20 sm:py-28">
 
         <div class="mx-auto max-w-6xl">
 
-            <div class="mb-16 text-center fade-up">
+            <div class="mb-12 text-center fade-up">
 
                 <p class="script text-4xl text-wedding-brown">
                     # Throwback
@@ -412,7 +412,7 @@
             </div>
 
 
-            <div class="grid gap-5 md:grid-cols-3">
+            <div class="grid gap-6 md:grid-cols-3">
 
                 {{-- PHOTO SET 1 --}}
                 <div class="photo-placeholder aspect-[2/3] overflow-hidden fade-left relative group"
@@ -660,16 +660,12 @@
     {{-- ========================================================= --}}
     {{-- FREQUENTLY ASKED QUESTIONS --}}
     {{-- ========================================================= --}}
-    <section class="bg-wedding-beige px-6 py-24 sm:py-32">
+    <section class="bg-wedding-beige px-6 py-20 sm:py-28">
 
         <div class="mx-auto max-w-3xl">
 
             {{-- Header --}}
-            <div class="mb-16 text-center fade-up">
-                <p class="script text-4xl text-wedding-brown">
-                    A few notes
-                </p>
-
+            <div class="mb-12 text-center fade-up">
                 <h2 class="serif mt-2 text-4xl font-light sm:text-5xl">
                     Frequently Asked Questions
                 </h2>
@@ -683,7 +679,7 @@
             </div>
 
             {{-- Questions --}}
-            <div class="space-y-5" x-data="{ open: null }">
+            <div class="space-y-4" x-data="{ open: null }">
 
                 {{-- 1 --}}
                 <div class="overflow-hidden rounded-lg border border-wedding-sand/70 bg-wedding-cream">
@@ -870,11 +866,11 @@
     {{-- WEDDING DETAILS --}}
     {{-- ========================================================= --}}
 
-    <section id="details" class="bg-wedding-beige px-6 py-24 sm:py-32">
+    <section id="details" class="bg-wedding-beige px-6 py-20 sm:py-28">
 
         <div class="mx-auto max-w-5xl">
 
-            <div class="mb-16 text-center fade-up">
+            <div class="mb-12 text-center fade-up">
 
                 <p class="script text-4xl text-wedding-brown">
                     Save the date
@@ -891,7 +887,7 @@
             </div>
 
 
-            <div class="grid gap-8 md:grid-cols-2">
+            <div class="grid gap-6 md:grid-cols-2">
 
                 {{-- CHURCH --}}
                 <div class="bg-wedding-cream p-8 sm:p-10 text-center fade-left">
@@ -971,7 +967,7 @@
     {{-- QUOTE --}}
     {{-- ========================================================= --}}
 
-    <section class="bg-wedding-dark px-6 py-24 text-center text-white">
+    <section class="bg-wedding-dark px-6 py-20 text-center text-white sm:py-28">
 
         <div class="mx-auto max-w-3xl fade-up">
 
@@ -995,7 +991,7 @@
     {{-- RSVP --}}
     {{-- ========================================================= --}}
 
-    <section class="px-6 py-28 sm:py-36">
+    <section class="px-6 py-24 sm:py-32">
 
         <div class="mx-auto max-w-3xl text-center fade-up">
 
