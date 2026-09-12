@@ -171,6 +171,7 @@
     guestName: @js(old('name', '')),
     rsvpOpen: @js(session()->has('rsvp_success') || $errors->any()),
     submitted: @js(session()->has('rsvp_success')),
+    hasResponded: false,
     invitationOpen: false,
     selectedInvitation: 0,
     touchStartX: 0,
@@ -185,6 +186,21 @@
     ],
 
     init() {
+        try {
+            this.hasResponded = localStorage.getItem('wedding_rsvp_submitted') === 'true';
+
+            if (this.submitted) {
+                localStorage.setItem('wedding_rsvp_submitted', 'true');
+                this.hasResponded = true;
+            }
+
+            if (this.hasResponded && !this.submitted) {
+                this.rsvpOpen = false;
+            }
+        } catch (error) {
+            // Continue normally when browser storage is unavailable.
+        }
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -660,14 +676,17 @@
     {{-- ========================================================= --}}
     {{-- FREQUENTLY ASKED QUESTIONS --}}
     {{-- ========================================================= --}}
-    <section class="bg-wedding-beige px-6 py-20 sm:py-28">
+    <section class="bg-wedding-beige px-6 py-24 sm:py-32">
 
         <div class="mx-auto max-w-3xl">
 
             {{-- Header --}}
-            <div class="mb-12 text-center fade-up">
-                <h2 class="serif mt-2 text-4xl font-light sm:text-5xl">
+            <div class="mb-16 text-center fade-up">
+                <p class="script text-4xl text-wedding-brown">
                     Frequently Asked Questions
+                </p>
+
+                <h2 class="serif mt-2 text-4xl font-light sm:text-5xl">
                 </h2>
 
                 <div class="mx-auto my-7 h-px w-16 bg-wedding-sand"></div>
@@ -679,7 +698,7 @@
             </div>
 
             {{-- Questions --}}
-            <div class="space-y-4" x-data="{ open: null }">
+            <div class="space-y-5" x-data="{ open: null }">
 
                 {{-- 1 --}}
                 <div class="overflow-hidden rounded-lg border border-wedding-sand/70 bg-wedding-cream">
@@ -692,14 +711,19 @@
                             class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-wedding-sand text-wedding-brown transition-transform duration-300"
                             :class="open === 1 ? 'rotate-45' : ''">+</span>
                     </button>
-                    <div x-show="open === 1" x-collapse>
-                        <div class="border-t border-wedding-sand/50 px-6 pb-6 pt-4">
-                            <p class="serif text-base leading-8 text-wedding-muted">
-                                Kindly celebrate with us only with the guest/s indicated on your invitation.
-                                Due to our limited seating, we are unable to accommodate additional guests.
-                                Thank you for understanding.
-                            </p>
-                        </div>
+
+                    <div x-show="open === 1" x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 -translate-y-2"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        x-transition:leave="transition ease-in duration-200"
+                        x-transition:leave-start="opacity-100 translate-y-0"
+                        x-transition:leave-end="opacity-0 -translate-y-2"
+                        class="border-t border-wedding-sand/50 px-6 pb-6 pt-4">
+                        <p class="serif text-base leading-8 text-wedding-muted">
+                            No. Kindly celebrate with us only with the guest/s indicated on your invitation.
+                            Due to our limited seating, we are unable to accommodate additional guests.
+                            Thank you for understanding.
+                        </p>
                     </div>
                 </div>
 
@@ -714,14 +738,19 @@
                             class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-wedding-sand text-wedding-brown transition-transform duration-300"
                             :class="open === 2 ? 'rotate-45' : ''">+</span>
                     </button>
-                    <div x-show="open === 2" x-collapse>
-                        <div class="border-t border-wedding-sand/50 px-6 pb-6 pt-4">
-                            <p class="serif text-base leading-8 text-wedding-muted">
-                                We kindly ask our guests to refrain from wearing white, as it is reserved
-                                for the Bride and Groom. Black is also not part of our chosen palette.
-                                We would love for you to follow our beige and champagne gold dress code.
-                            </p>
-                        </div>
+
+                    <div x-show="open === 2" x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 -translate-y-2"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        x-transition:leave="transition ease-in duration-200"
+                        x-transition:leave-start="opacity-100 translate-y-0"
+                        x-transition:leave-end="opacity-0 -translate-y-2"
+                        class="border-t border-wedding-sand/50 px-6 pb-6 pt-4">
+                        <p class="serif text-base leading-8 text-wedding-muted">
+                            We kindly ask our guests to refrain from wearing white, as it is reserved
+                            for the Bride and Groom. Black is also not part of our chosen palette.
+                            We would love for you to follow our beige and champagne gold dress code.
+                        </p>
                     </div>
                 </div>
 
@@ -736,14 +765,19 @@
                             class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-wedding-sand text-wedding-brown transition-transform duration-300"
                             :class="open === 3 ? 'rotate-45' : ''">+</span>
                     </button>
-                    <div x-show="open === 3" x-collapse>
-                        <div class="border-t border-wedding-sand/50 px-6 pb-6 pt-4">
-                            <p class="serif text-base leading-8 text-wedding-muted">
-                                We adore your little ones, but due to limited seating, this will be an
-                                adults-only celebration. We hope you understand and thank you for
-                                celebrating with us.
-                            </p>
-                        </div>
+
+                    <div x-show="open === 3" x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 -translate-y-2"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        x-transition:leave="transition ease-in duration-200"
+                        x-transition:leave-start="opacity-100 translate-y-0"
+                        x-transition:leave-end="opacity-0 -translate-y-2"
+                        class="border-t border-wedding-sand/50 px-6 pb-6 pt-4">
+                        <p class="serif text-base leading-8 text-wedding-muted">
+                            We adore your little ones, but due to limited seating, this will be an
+                            adults-only celebration. We hope you understand and thank you for
+                            celebrating with us.
+                        </p>
                     </div>
                 </div>
 
@@ -758,13 +792,18 @@
                             class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-wedding-sand text-wedding-brown transition-transform duration-300"
                             :class="open === 4 ? 'rotate-45' : ''">+</span>
                     </button>
-                    <div x-show="open === 4" x-collapse>
-                        <div class="border-t border-wedding-sand/50 px-6 pb-6 pt-4">
-                            <p class="serif text-base leading-8 text-wedding-muted">
-                                Transportation will be provided for the wedding entourage only.
-                                Guests are kindly requested to arrange their own transportation.
-                            </p>
-                        </div>
+
+                    <div x-show="open === 4" x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 -translate-y-2"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        x-transition:leave="transition ease-in duration-200"
+                        x-transition:leave-start="opacity-100 translate-y-0"
+                        x-transition:leave-end="opacity-0 -translate-y-2"
+                        class="border-t border-wedding-sand/50 px-6 pb-6 pt-4">
+                        <p class="serif text-base leading-8 text-wedding-muted">
+                            Transportation will be provided for the wedding entourage only.
+                            Guests are kindly requested to arrange their own transportation.
+                        </p>
                     </div>
                 </div>
 
@@ -779,14 +818,19 @@
                             class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-wedding-sand text-wedding-brown transition-transform duration-300"
                             :class="open === 5 ? 'rotate-45' : ''">+</span>
                     </button>
-                    <div x-show="open === 5" x-collapse>
-                        <div class="border-t border-wedding-sand/50 px-6 pb-6 pt-4">
-                            <p class="serif text-base leading-8 text-wedding-muted">
-                                We kindly ask everyone to dress appropriately for the church ceremony
-                                and follow our designated dress code. Thank you for helping us honor
-                                the occasion.
-                            </p>
-                        </div>
+
+                    <div x-show="open === 5" x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 -translate-y-2"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        x-transition:leave="transition ease-in duration-200"
+                        x-transition:leave-start="opacity-100 translate-y-0"
+                        x-transition:leave-end="opacity-0 -translate-y-2"
+                        class="border-t border-wedding-sand/50 px-6 pb-6 pt-4">
+                        <p class="serif text-base leading-8 text-wedding-muted">
+                            We kindly ask everyone to dress appropriately for the church ceremony
+                            and follow our designated dress code. Thank you for helping us honor
+                            the occasion.
+                        </p>
                     </div>
                 </div>
 
@@ -801,13 +845,18 @@
                             class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-wedding-sand text-wedding-brown transition-transform duration-300"
                             :class="open === 6 ? 'rotate-45' : ''">+</span>
                     </button>
-                    <div x-show="open === 6" x-collapse>
-                        <div class="border-t border-wedding-sand/50 px-6 pb-6 pt-4">
-                            <p class="serif text-base leading-8 text-wedding-muted">
-                                Seats will be assigned in advance. Our team will be happy to guide you
-                                to your designated seat. Just relax and enjoy the celebration!
-                            </p>
-                        </div>
+
+                    <div x-show="open === 6" x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 -translate-y-2"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        x-transition:leave="transition ease-in duration-200"
+                        x-transition:leave-start="opacity-100 translate-y-0"
+                        x-transition:leave-end="opacity-0 -translate-y-2"
+                        class="border-t border-wedding-sand/50 px-6 pb-6 pt-4">
+                        <p class="serif text-base leading-8 text-wedding-muted">
+                            Seats will be assigned in advance. Our team will be happy to guide you
+                            to your designated seat. Just relax and enjoy the celebration!
+                        </p>
                     </div>
                 </div>
 
@@ -822,14 +871,19 @@
                             class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-wedding-sand text-wedding-brown transition-transform duration-300"
                             :class="open === 7 ? 'rotate-45' : ''">+</span>
                     </button>
-                    <div x-show="open === 7" x-collapse>
-                        <div class="border-t border-wedding-sand/50 px-6 pb-6 pt-4">
-                            <p class="serif text-base leading-8 text-wedding-muted">
-                                That is so sweet of you! But please don’t worry—we have someone
-                                specially assigned to assist the Bride. Your presence and celebration
-                                with us are more than enough.
-                            </p>
-                        </div>
+
+                    <div x-show="open === 7" x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 -translate-y-2"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        x-transition:leave="transition ease-in duration-200"
+                        x-transition:leave-start="opacity-100 translate-y-0"
+                        x-transition:leave-end="opacity-0 -translate-y-2"
+                        class="border-t border-wedding-sand/50 px-6 pb-6 pt-4">
+                        <p class="serif text-base leading-8 text-wedding-muted">
+                            That is so sweet of you! But please don’t worry—we have someone
+                            specially assigned to assist the Bride. Your presence and celebration
+                            with us are more than enough.
+                        </p>
                     </div>
                 </div>
 
@@ -844,14 +898,19 @@
                             class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-wedding-sand text-wedding-brown transition-transform duration-300"
                             :class="open === 8 ? 'rotate-45' : ''">+</span>
                     </button>
-                    <div x-show="open === 8" x-collapse>
-                        <div class="border-t border-wedding-sand/50 px-6 pb-6 pt-4">
-                            <p class="serif text-base leading-8 text-wedding-muted">
-                                We kindly ask everyone to keep their phones on silent mode or switched
-                                off during the ceremony, so we can all be fully present for this
-                                special moment.
-                            </p>
-                        </div>
+
+                    <div x-show="open === 8" x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 -translate-y-2"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        x-transition:leave="transition ease-in duration-200"
+                        x-transition:leave-start="opacity-100 translate-y-0"
+                        x-transition:leave-end="opacity-0 -translate-y-2"
+                        class="border-t border-wedding-sand/50 px-6 pb-6 pt-4">
+                        <p class="serif text-base leading-8 text-wedding-muted">
+                            We kindly ask everyone to keep their phones on silent mode or switched
+                            off during the ceremony, so we can all be fully present for this
+                            special moment.
+                        </p>
                     </div>
                 </div>
 
@@ -1008,9 +1067,10 @@
                 this new chapter together.
             </p>
 
-            <button @click="rsvpOpen = true"
-                class="mt-10 bg-wedding-dark px-10 py-4 text-xs uppercase tracking-[0.3em] text-white transition hover:bg-wedding-brown">
-                Yes, I'll be there
+            <button @click="if (!hasResponded) rsvpOpen = true" :disabled="hasResponded"
+                :class="hasResponded ? 'cursor-not-allowed bg-wedding-muted/50' : 'bg-wedding-dark hover:bg-wedding-brown'"
+                class="mt-10 px-10 py-4 text-xs uppercase tracking-[0.3em] text-white transition">
+                <span x-text="hasResponded ? 'RSVP Already Submitted' : 'Yes, I\'ll be there'"></span>
             </button>
 
         </div>
