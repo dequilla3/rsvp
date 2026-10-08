@@ -1048,7 +1048,7 @@
                     </p>
 
                     <h3 class="serif mt-2 text-3xl">
-                        Cinco Niñas • Maya Hall
+                        Cinco Niñas • Acacia Hall
                     </h3>
 
                     <p class="mt-4 text-sm leading-7 text-wedding-muted">
