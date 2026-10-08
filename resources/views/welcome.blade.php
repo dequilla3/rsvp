@@ -431,7 +431,7 @@
                                     <span
                                         class="text-[9px] uppercase tracking-wider text-[#9a8068] block mb-0.5">Groomsmen</span>
                                     <p class="serif text-[11px] text-[#806f61] leading-relaxed">
-                                        Randy R. Barcelona Jr., Ernesto Piolo, MJ Clej T. Victoriano, Anthony N. Atienza
+                                        Randy R. Barcelona Jr., Yuan Bretaña, MJ Clej T. Victoriano, Anthony N. Atienza
                                     </p>
                                 </div>
                                 <div>
