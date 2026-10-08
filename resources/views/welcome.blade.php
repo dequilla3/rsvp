@@ -193,19 +193,6 @@
     guestName: @js(old('name', '')),
     rsvpOpen: @js(session()->has('rsvp_success') || $errors->any()),
     submitted: @js(session()->has('rsvp_success')),
-    invitationOpen: false,
-    selectedInvitation: 0,
-    touchStartX: 0,
-    touchStartY: 0,
-    swipeDirection: null,
-    isTransitioning: false,
-
-    invitations: [
-        '{{ versioned_asset('images/invitation-1.jpg') }}',
-        '{{ versioned_asset('images/invitation-2.jpg') }}',
-        '{{ versioned_asset('images/invitation-3.jpg') }}'
-    ],
-
     init() {
         const animatedSelector = '.fade-up, .fade-left, .fade-right, .scale-in';
         const observer = new IntersectionObserver((entries) => {
@@ -229,21 +216,6 @@
         });
 
         document.querySelectorAll(animatedSelector).forEach(el => observer.observe(el));
-    },
-
-    changeInvitation(direction) {
-        if (this.isTransitioning) return;
-        this.isTransitioning = true;
-
-        let next = this.selectedInvitation + direction;
-        if (next < 0) next = this.invitations.length - 1;
-        if (next >= this.invitations.length) next = 0;
-
-        this.selectedInvitation = next;
-
-        setTimeout(() => {
-            this.isTransitioning = false;
-        }, 400);
     },
 }">
 
@@ -357,69 +329,190 @@
     </section>
 
     {{-- INVITATION SECTION --}}
-    <section id="invitation" class="relative overflow-hidden bg-[#f5eee6] px-6 py-20 sm:px-8 sm:py-28 lg:px-12">
-        <div class="mx-auto max-w-6xl">
+    <section id="invitation" class="relative overflow-hidden bg-[#f4ede4] px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
+        <div aria-hidden="true"
+            class="pointer-events-none absolute -top-40 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full border border-[#d8c8b8]/50 sm:h-[30rem] sm:w-[30rem]">
+        </div>
+        <div aria-hidden="true"
+            class="pointer-events-none absolute -top-32 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full border border-[#d8c8b8]/40 sm:h-96 sm:w-96">
+        </div>
+
+        <div class="relative mx-auto max-w-6xl">
 
             {{-- Section Header --}}
-            <div class="mb-12 text-center fade-up">
-                <p class="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-[#9a8068]">
-                    You're Invited
+            <div class="mb-14 text-center fade-up sm:mb-16">
+                <p class="script text-4xl text-[#9a8068] sm:text-5xl">
+                    With joy in our hearts
                 </p>
 
-                <h2 class="font-serif text-4xl text-[#59483b] sm:text-5xl">
-                    Our Invitation
+                <h2 class="serif mt-2 text-4xl font-light text-[#59483b] sm:text-5xl">
+                    The Invitation
                 </h2>
 
-                <div class="mx-auto mt-5 h-px w-16 bg-[#b9a28e]"></div>
+                <div class="mx-auto mt-6 flex items-center justify-center gap-3" aria-hidden="true">
+                    <span class="h-px w-10 bg-[#c5ae99]"></span>
+                    <span class="h-2 w-2 rotate-45 border border-[#a98e75]"></span>
+                    <span class="h-px w-10 bg-[#c5ae99]"></span>
+                </div>
 
-                <p class="mx-auto mt-5 max-w-xl text-sm leading-7 text-[#806f61]">
+                <p class="mx-auto mt-6 max-w-xl text-sm leading-7 text-[#806f61] sm:text-base">
                     We would be honored to celebrate this special day with you.
-                    Please take a moment to view our wedding invitation.
+                    Here are the details of our wedding day.
                 </p>
             </div>
 
-            {{-- Invitation Images --}}
-            <div class="grid gap-6 md:grid-cols-3">
+            {{-- Invitation HTML Cards --}}
+            <div class="grid items-stretch gap-5 md:grid-cols-3 md:gap-6">
 
-                {{-- Invitation 1 --}}
-                <div class="group cursor-pointer overflow-hidden rounded-xl border border-[#ded1c4] bg-white p-2 shadow-sm transition duration-500 hover:-translate-y-2 hover:shadow-xl fade-up"
-                    @click="selectedInvitation = 0; invitationOpen = true">
-                    <div class="overflow-hidden rounded-lg bg-[#faf7f3]">
-                        <img src="{{ versioned_asset('images/invitation-1.jpg') }}" alt="Wedding Invitation 1"
-                            class="h-auto w-full object-contain transition duration-700 group-hover:scale-[1.02]"
-                            loading="lazy">
-                    </div>
-                </div>
+                {{-- Invitation Card 1: Ceremony & Parents --}}
+                <article
+                    class="rounded-2xl border border-[#d8c6b5] bg-[#fffdf9] p-2 shadow-[0_18px_45px_-25px_rgba(89,72,59,0.4)] transition-shadow duration-300 hover:shadow-[0_22px_50px_-24px_rgba(89,72,59,0.48)] fade-up">
+                    <div
+                        class="flex h-full min-h-[480px] flex-col justify-between rounded-xl border border-[#e8dfd5] bg-[#faf7f3] px-5 py-7 text-center sm:px-6">
+                        <div class="my-auto space-y-5">
+                            <span
+                                class="text-[10px] uppercase tracking-[0.25em] text-[#9a8068] block font-semibold">The
+                                Wedding of</span>
 
-                {{-- Invitation 2 --}}
-                <div class="group cursor-pointer overflow-hidden rounded-xl border border-[#ded1c4] bg-white p-2 shadow-sm transition duration-500 hover:-translate-y-2 hover:shadow-xl fade-up"
-                    @click="selectedInvitation = 1; invitationOpen = true">
-                    <div class="overflow-hidden rounded-lg bg-[#faf7f3]">
-                        <img src="{{ versioned_asset('images/invitation-2.jpg') }}" alt="Wedding Invitation 2"
-                            class="h-auto w-full object-contain transition duration-700 group-hover:scale-[1.02]"
-                            loading="lazy">
-                    </div>
-                </div>
+                            <h3 class="script text-5xl text-[#59483b]">Kim & Mitchell</h3>
 
-                {{-- Invitation 3 --}}
-                <div class="group cursor-pointer overflow-hidden rounded-xl border border-[#ded1c4] bg-white p-2 shadow-sm transition duration-500 hover:-translate-y-2 hover:shadow-xl fade-up"
-                    @click="selectedInvitation = 2; invitationOpen = true">
-                    <div class="overflow-hidden rounded-lg bg-[#faf7f3]">
-                        <img src="{{ versioned_asset('images/invitation-3.jpg') }}" alt="Wedding Invitation 3"
-                            class="h-auto w-full object-contain transition duration-700 group-hover:scale-[1.02]"
-                            loading="lazy">
+                            <p class="serif text-sm leading-relaxed text-[#806f61]">
+                                invite you to join them as they begin their forever.
+                            </p>
+
+                            <div class="py-2 border-y border-[#ded1c4]/60 my-2 space-y-1">
+                                <p class="serif text-[#59483b] font-medium tracking-wide">Friday, October 16, 2026</p>
+                                <p class="text-[11px] uppercase tracking-widest text-[#9a8068]">2:00 In the afternoon
+                                </p>
+                                <p class="serif text-xs text-[#806f61] font-semibold mt-1">Iglesia Ni Cristo Lokal ng
+                                    Koronadal City</p>
+                            </div>
+
+                            <div class="space-y-1 pt-1">
+                                <p class="text-[9px] uppercase tracking-wider text-[#9a8068]">With the blessings of
+                                    their beloved parents</p>
+                                <p class="serif text-xs text-[#59483b] font-medium">Mr. Arthur M. Dequilla</p>
+                                <p class="serif text-xs text-[#59483b] font-medium">Mr. Randy P. Barcelona Sr. & Mrs.
+                                    Gina R. Barcelona</p>
+                            </div>
+                        </div>
+                        <div
+                            class="text-[10px] tracking-widest text-[#b9a28e] uppercase border-t border-[#e8dfd5]/60 pt-3 mt-auto font-semibold">
+                            Card I • The Wedding
+                        </div>
                     </div>
-                </div>
+                </article>
+
+                {{-- Invitation Card 2: Wedding Entourage --}}
+                <article
+                    class="rounded-2xl border border-[#d8c6b5] bg-[#fffdf9] p-2 shadow-[0_18px_45px_-25px_rgba(89,72,59,0.4)] transition-shadow duration-300 hover:shadow-[0_22px_50px_-24px_rgba(89,72,59,0.48)] fade-up">
+                    <div
+                        class="flex h-full min-h-[480px] flex-col justify-between rounded-xl border border-[#e8dfd5] bg-[#faf7f3] px-5 py-7 text-center sm:px-6">
+                        <div class="my-auto space-y-4">
+                            <h4
+                                class="serif text-lg tracking-wider text-[#59483b] uppercase font-semibold border-b border-[#e8dfd5] pb-2">
+                                The Entourage</h4>
+
+                            <div class="grid grid-cols-2 gap-4 text-left py-2">
+                                <div>
+                                    <span class="text-[9px] uppercase tracking-wider text-[#9a8068] block">Best
+                                        Man</span>
+                                    <p class="serif text-sm font-medium text-[#59483b]">Arjay R. Barcelona</p>
+                                </div>
+                                <div>
+                                    <span class="text-[9px] uppercase tracking-wider text-[#9a8068] block">Maid of
+                                        Honor</span>
+                                    <p class="serif text-sm font-medium text-[#59483b]">Glaiza N. Dequilla</p>
+                                </div>
+                            </div>
+
+                            <div class="space-y-3 text-left border-t border-[#e8dfd5]/60 pt-3">
+                                <div>
+                                    <span
+                                        class="text-[9px] uppercase tracking-wider text-[#9a8068] block mb-0.5">Groomsmen</span>
+                                    <p class="serif text-[11px] text-[#806f61] leading-relaxed">
+                                        Randy R. Barcelona Jr., Ernesto Piolo, MJ Clej T. Victoriano, Anthony N. Atienza
+                                    </p>
+                                </div>
+                                <div>
+                                    <span
+                                        class="text-[9px] uppercase tracking-wider text-[#9a8068] block mb-0.5">Bridesmaids</span>
+                                    <p class="serif text-[11px] text-[#806f61] leading-relaxed">
+                                        Arvie Grace N. Dequilla, Pearl Ann Petorio, Cristalyn C. Nermal, Vernamae Taaca
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-2 text-left border-t border-[#e8dfd5]/60 pt-3">
+                                <div>
+                                    <span class="text-[9px] uppercase tracking-wider text-[#9a8068] block">Ring
+                                        Bearer</span>
+                                    <p class="serif text-xs font-medium text-[#59483b]">Prince Zyll B. Camacho</p>
+                                </div>
+                                <div>
+                                    <span class="text-[9px] uppercase tracking-wider text-[#9a8068] block">Flower
+                                        Girl</span>
+                                    <p class="serif text-xs font-medium text-[#59483b]">Yassy Bretana</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="text-[10px] tracking-widest text-[#b9a28e] uppercase border-t border-[#e8dfd5]/60 pt-3 mt-auto font-semibold">
+                            Card II • Entourage
+                        </div>
+                    </div>
+                </article>
+
+                {{-- Invitation Card 3: Principal Sponsors --}}
+                <article
+                    class="rounded-2xl border border-[#d8c6b5] bg-[#fffdf9] p-2 shadow-[0_18px_45px_-25px_rgba(89,72,59,0.4)] transition-shadow duration-300 hover:shadow-[0_22px_50px_-24px_rgba(89,72,59,0.48)] fade-up">
+                    <div
+                        class="flex h-full min-h-[480px] flex-col justify-between rounded-xl border border-[#e8dfd5] bg-[#faf7f3] px-5 py-7 text-center sm:px-6">
+                        <div class="my-auto space-y-3">
+                            <h4
+                                class="serif text-lg tracking-wider text-[#59483b] uppercase font-semibold border-b border-[#e8dfd5] pb-2">
+                                Principal Sponsors</h4>
+
+                            <p class="text-[9px] uppercase tracking-widest text-[#9a8068]">To guide us in our new life
+                                journey</p>
+
+                            <div class="grid grid-cols-2 gap-y-3 gap-x-2 text-left pt-2">
+                                <div>
+                                    <p class="serif text-xs font-medium text-[#59483b]">Mr. Samuel A. Camaganacan</p>
+                                    <p class="serif text-xs font-medium text-[#59483b]">Mr. King Elmor A. Galleto</p>
+                                    <p class="serif text-xs font-medium text-[#59483b]">Mr. Marlo F. Victoriano</p>
+                                    <p class="serif text-xs font-medium text-[#59483b]">Mr. Dennis B. Nicolas</p>
+                                    <p class="serif text-xs font-medium text-[#59483b]">Mr. Angelbert Lacson</p>
+                                </div>
+                                <div class="border-l border-[#e8dfd5]/60 pl-3">
+                                    <p class="serif text-xs font-medium text-[#59483b]">Mrs. Rochelle D. Mahinay-Sero
+                                    </p>
+                                    <p class="serif text-xs font-medium text-[#59483b]">Mrs. Annabelle T. Becodo</p>
+                                    <p class="serif text-xs font-medium text-[#59483b]">Mrs. Menchu C. Nermal</p>
+                                    <p class="serif text-xs font-medium text-[#59483b]">Mrs. Nancy N. Atienza</p>
+                                    <p class="serif text-xs font-medium text-[#59483b]">Mrs. Titiana Engane</p>
+                                </div>
+                            </div>
+
+                            <div class="border-t border-[#e8dfd5]/60 pt-3 mt-1 text-center">
+                                <span class="text-[9px] uppercase tracking-wider text-[#9a8068] block">Reception to
+                                    follow at</span>
+                                <p class="serif text-xs text-[#59483b] font-semibold">Cinco Niñas - Acacia Hall</p>
+                                <p class="serif text-[10px] text-[#806f61]">General Santos Drive, City of Koronadal</p>
+                            </div>
+                        </div>
+                        <div
+                            class="text-[10px] tracking-widest text-[#b9a28e] uppercase border-t border-[#e8dfd5]/60 pt-3 mt-auto font-semibold">
+                            Card III • Sponsors & Reception
+                        </div>
+                    </div>
+                </article>
 
             </div>
-
-            {{-- Hint --}}
-            <p class="mt-6 text-center text-xs tracking-wide text-[#9a8068]">
-                Tap an invitation to view it
-            </p>
 
         </div>
     </section>
+
 
 
     {{-- ========================================================= --}}
@@ -1018,7 +1111,7 @@
                     </h3>
 
                     <p class="mt-4 text-sm leading-7 text-wedding-muted">
-                        1:30 PM<br>
+                        2:00 PM<br>
                         Koronadal City
                     </p>
 
@@ -1230,65 +1323,6 @@
 
     </div>
 
-
-    {{-- INVITATION FULLSCREEN VIEWER --}}
-    <div x-show="invitationOpen" x-transition.opacity x-cloak
-        class="fixed inset-0 z-[100] flex items-center justify-center bg-black"
-        @keydown.escape.window="invitationOpen = false" @click.self="invitationOpen = false"
-        @touchstart="
-        touchStartX = $event.changedTouches[0].screenX;
-        touchStartY = $event.changedTouches[0].screenY;
-     "
-        @touchend="
-        if (isTransitioning) return;
-
-        const diffX = $event.changedTouches[0].screenX - touchStartX;
-        const diffY = $event.changedTouches[0].screenY - touchStartY;
-
-        if (Math.abs(diffX) > 60 && Math.abs(diffX) > Math.abs(diffY) * 1.5) {
-            changeInvitation(diffX > 0 ? -1 : 1);
-        }
-     ">
-
-        {{-- Close --}}
-        <button @click="invitationOpen = false"
-            class="absolute right-4 top-4 z-30 flex h-11 w-11 items-center justify-center rounded-full bg-black/40 text-2xl text-white backdrop-blur-sm transition hover:bg-black/60">
-            &times;
-        </button>
-
-        {{-- Previous --}}
-        <button @click.stop="changeInvitation(-1)"
-            class="absolute left-3 top-1/2 z-30 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-black/40 text-3xl text-white backdrop-blur-sm transition hover:bg-black/60 sm:flex sm:left-5">
-            &#8249;
-        </button>
-
-        {{-- Image with smooth animation --}}
-        <div class="relative flex h-full w-full items-center justify-center overflow-hidden p-2 sm:p-6">
-            <template x-for="(src, index) in invitations" :key="index">
-                <img x-show="selectedInvitation === index"
-                    x-transition:enter="transition ease-out duration-400 transform"
-                    x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
-                    x-transition:leave="transition ease-in duration-300 transform"
-                    x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
-                    :src="src" :alt="`Wedding Invitation ${index + 1}`"
-                    class="absolute max-h-full max-w-full object-contain select-none" draggable="false" @click.stop>
-            </template>
-        </div>
-
-        {{-- Next --}}
-        <button @click.stop="changeInvitation(1)"
-            class="absolute right-3 top-1/2 z-30 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-black/40 text-3xl text-white backdrop-blur-sm transition hover:bg-black/60 sm:flex sm:right-5">
-            &#8250;
-        </button>
-
-        {{-- Counter --}}
-        <div
-            class="absolute bottom-6 left-1/2 z-30 -translate-x-1/2 rounded-full bg-black/50 px-5 py-2 text-sm tracking-wider text-white backdrop-blur-sm">
-            <span x-text="selectedInvitation + 1"></span>
-            /
-            <span x-text="invitations.length"></span>
-        </div>
-    </div>
 
     {{-- ========================================================= --}}
     {{-- ALPINE --}}
