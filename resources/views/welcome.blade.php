@@ -1018,7 +1018,7 @@
                     </h3>
 
                     <p class="mt-4 text-sm leading-7 text-wedding-muted">
-                        2:00 PM<br>
+                        1:30 PM<br>
                         Koronadal City
                     </p>
 
